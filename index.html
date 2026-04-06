@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NEWID12345"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NEWID12345');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemesMaster Pro - Ultimate Free Meme Generator | No Watermark</title>
+  <meta name="description" content="Create viral memes instantly with MemesMaster Pro. Free, no watermark, high-res exports. Hundreds of templates, custom fonts, filters, layers, and image transform tools. Start making memes now!">
+  <meta name="keywords" content="meme generator, create memes, online meme editor, custom memes, funny memes, meme maker, viral memes, no watermark, free meme generator, meme templates, impact font, crop image, zoom meme">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://memesmaster.netlify.app/">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="MemesMaster Pro - Free Meme Generator">
+  <meta property="og:description" content="Create and customize hilarious memes with no watermark. Fast, easy, and completely free.">
+  <meta property="og:image" content="https://memesmaster.netlify.app/og-image.png">
+  <meta property="og:url" content="https://memesmaster.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MemesMaster Pro - Free Meme Generator">
+  <meta name="twitter:description" content="Make viral memes in seconds. No signup, no watermark.">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MemesMaster Pro",
+    "applicationCategory": "Multimedia",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free browser-based meme generator with no watermarks, high-resolution exports, and hundreds of templates.",
+    "url": "https://memesmaster.netlify.app/",
+    "screenshot": "https://memesmaster.netlify.app/og-image.png",
+    "featureList": "No watermark, high-res download, custom fonts, image filters, layers, emoji support, image zoom and pan",
+    "author": {
+      "@type": "Organization",
+      "name": "MemesMaster Team"
+    }
+  }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cinzel:wght@700&family=Lobster&family=Oswald:wght@700&family=Pacifico&family=Permanent+Marker&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #4ecdc4;
+      --dark: #2c2c2c;
+      --darker: #1a1a1a;
+      --text: #ffffff;
+      --text-dark: #333333;
+      --success: #06d6a0;
+      --error: #ef476f;
+      --transition: all 0.3s ease;
+      --shadow: 0 8px 30px rgba(0,0,0,0.5);
+      --radius: 12px;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      color: var(--text);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+    header { text-align: center; padding: 20px 0; width: 100%; }
+    
+    nav {
+      width: 100%;
+      background: rgba(30,30,30,0.6);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    nav a:hover, nav a.active {
+      color: var(--primary);
+      background: rgba(255,107,107,0.15);
+    }
+    nav a.active { border-bottom: 2px solid var(--primary); }
+    
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto 20px; }
+    
+    /* Main layout: canvas 2fr, controls 1fr */
+    .main-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      width: 100%;
+      align-items: start;
+    }
+    
+    .canvas-area {
+      background: rgba(30,30,30,0.8);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    canvas {
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      background: #111;
+      cursor: crosshair;
+      touch-action: none;
+      background-image: linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
+                        linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+                        linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+      background-size: 20px 20px;
+    }
+    
+    /* Right sidebar – scrollable */
+    .controls-sidebar {
+      background: rgba(30,30,30,0.8);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: calc(100vh - 150px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) rgba(255,255,255,0.1);
+    }
+    .controls-sidebar::-webkit-scrollbar { width: 8px; }
+    .controls-sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+    .controls-sidebar::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    
+    .section-title {
+      color: var(--secondary);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 8px;
+    }
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+    }
+    
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 5px;
+    }
+    .control-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    
+    input[type="file"], button, select, input[type="color"] {
+      padding: 10px 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: rgba(50,50,50,0.9);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      outline: none;
+      width: 100%;
+      transition: var(--transition);
+    }
+    input[type="file"]::file-selector-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    button {
+      background: linear-gradient(135deg, var(--primary), #ff8e8e);
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255,107,107,0.4);
+    }
+    button.secondary { background: rgba(70,70,70,0.8); }
+    
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .filter-item {
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid transparent;
+    }
+    .filter-item img { width: 100%; height: 50px; object-fit: cover; filter: grayscale(100%); transition: var(--transition); }
+    .filter-item:hover img, .filter-item.active img { filter: grayscale(0%); }
+    .filter-item.active { border-color: var(--primary); }
+    .filter-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.8); padding: 3px; font-size: 0.65rem; text-align: center;
+    }
+    
+    .text-effects {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    
+    .layer-panel {
+      background: rgba(20,20,20,0.6);
+      border-radius: var(--radius);
+      padding: 15px;
+    }
+    .layer-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; margin: 5px 0;
+      background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .layer-item.selected { background: rgba(255,107,107,0.15); border-color: var(--primary); }
+    .layer-controls button { padding: 4px 8px; font-size: 0.75rem; background: rgba(0,0,0,0.3); width: auto; }
+    
+    .color-presets {
+      display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap;
+    }
+    .color-preset {
+      width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .color-preset:hover { transform: scale(1.2); border-color: white; }
+    
+    .share-buttons {
+      display: flex; gap: 8px; margin-top: 10px;
+    }
+    .share-button {
+      flex: 1; padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.1);
+      color: white; text-decoration: none; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      transition: var(--transition);
+    }
+    .share-button:hover { background: var(--primary); }
+    
+    /* Pages */
+    .page-content {
+      background: rgba(30,30,30,0.8);
+      border-radius: var(--radius);
+      padding: 30px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .page-content h2 { color: var(--secondary); margin-bottom: 20px; font-size: 2rem; }
+    .blog-post { margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; scroll-margin-top: 80px; }
+    .blog-post h3 { color: var(--primary); }
+    .blog-date { color: var(--secondary); font-size: 0.9rem; margin-bottom: 10px; display: block; }
+    .blog-post img { max-width:100%; border-radius:8px; margin:15px 0; background: #333; }
+    
+    .template-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px;
+    }
+    .template-item {
+      cursor: pointer; border-radius: 8px; overflow: hidden; border: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .template-item:hover { border-color: var(--primary); transform: scale(1.02); }
+    .template-item img { width: 100%; height: 120px; object-fit: cover; display: block; }
+    
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal-content {
+      background: rgba(30,30,30,0.95); padding: 25px; border-radius: var(--radius);
+      width: 90%; max-width: 400px; transform: translateY(20px); transition: transform 0.3s;
+    }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
+    .modal-content textarea { width: 100%; height: 100px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 8px; padding: 10px; margin: 15px 0; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    
+    .notification {
+      position: fixed; top: 20px; right: 20px; padding: 15px 25px; border-radius: var(--radius);
+      background: var(--success); color: var(--text-dark); font-weight: 600;
+      z-index: 1000; transform: translateX(200%); transition: transform 0.4s;
+    }
+    .notification.show { transform: translateX(0); }
+    .notification.error { background: var(--error); color: white; }
+    
+    #emojiPicker {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(30,30,30,0.95); padding: 20px; border-radius: var(--radius);
+      z-index: 1001; max-width: 320px; display: none;
+    }
+    .emoji-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; font-size: 1.5rem; text-align: center; }
+    .emoji-grid span { cursor: pointer; padding: 5px; border-radius: 6px; }
+    .emoji-grid span:hover { background: var(--primary); }
+    
+    footer {
+      width: 100%;
+      margin-top: 40px;
+      padding: 30px 20px;
+      background: rgba(20,20,20,0.6);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--primary); }
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+    .social-icons a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    .social-icons a:hover { color: var(--primary); transform: translateY(-3px); }
+    .copyright { opacity: 0.7; font-size: 0.9rem; }
+    
+    @media (max-width: 992px) {
+      .main-content { grid-template-columns: 1fr; }
+      .controls-sidebar { max-height: none; }
+    }
+    @media (max-width: 600px) {
+      .button-grid { grid-template-columns: 1fr 1fr; }
+      .template-grid { grid-template-columns: repeat(2, 1fr); }
+      nav a { padding: 8px; font-size: 0.9rem; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <a class="active" onclick="showPage('home')">Workspace</a>
+        <a onclick="showPage('templates')">Templates</a>
+        <a onclick="showPage('blog')">Blog</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('contact')">Contact</a>
+        <a onclick="showPage('privacy')">Privacy</a>
+      </nav>
+      <h1>MemesMaster Pro</h1>
+      <p class="subtitle">The fastest, completely free, browser-based meme generator. No watermarks, high-resolution exports.</p>
+    </header>
+
+    <!-- HOME PAGE (WORKSPACE) -->
+    <div id="home" class="page">
+      <div class="main-content">
+        <!-- Left: Canvas -->
+        <div class="canvas-area">
+          <canvas id="canvas" width="500" height="400"></canvas>
+        </div>
+        
+        <!-- Right: All controls -->
+        <div class="controls-sidebar">
+          <!-- Upload -->
+          <div>
+            <div class="section-title"><i class="fas fa-cloud-upload-alt"></i> Upload Image</div>
+            <input type="file" id="upload" accept="image/*">
+          </div>
+          
+          <!-- Action Buttons -->
+          <div>
+            <div class="section-title"><i class="fas fa-tools"></i> Tools</div>
+            <div class="button-grid">
+              <button onclick="addTextWithEffects()" title="Add text bubble"><i class="fas fa-text-height"></i> Add Text</button>
+              <button onclick="toggleEmojiPicker()" title="Add emojis"><i class="fas fa-smile"></i> Emojis</button>
+              <button onclick="mirrorImage()" class="secondary" title="Flip image"><i class="fas fa-arrows-alt-h"></i> Flip</button>
+              <button onclick="undoAction()" class="secondary" title="Undo"><i class="fas fa-undo"></i> Undo</button>
+              <button onclick="redoAction()" class="secondary" title="Redo"><i class="fas fa-redo"></i> Redo</button>
+              <button id="toggleEffectsBtn" class="secondary" title="Toggle Text Styles"><i class="fas fa-magic"></i> Styles</button>
+              <button id="toggleLayersBtn" class="secondary" title="Toggle Layers"><i class="fas fa-layer-group"></i> Layers</button>
+            </div>
+          </div>
+          
+          <!-- Download (prominent) -->
+          <button onclick="downloadMeme()" style="background: var(--success); color:#111; font-size:1.1rem; padding: 12px;">
+            <i class="fas fa-download"></i> Download High-Res Meme
+          </button>
+          
+          <!-- NEW: Image Transform (Zoom & Pan) -->
+          <div>
+            <div class="section-title"><i class="fas fa-expand-alt"></i> Image Transform</div>
+            <div class="control-group">
+              <label>Scale (Zoom) <span id="scaleValue">1.00</span></label>
+              <input type="range" id="imageScale" min="0.5" max="3.0" step="0.01" value="1.0">
+            </div>
+            <div class="control-group">
+              <label>Offset X <span id="offsetXValue">0</span></label>
+              <input type="range" id="imageOffsetX" min="-500" max="500" step="1" value="0">
+            </div>
+            <div class="control-group">
+              <label>Offset Y <span id="offsetYValue">0</span></label>
+              <input type="range" id="imageOffsetY" min="-400" max="400" step="1" value="0">
+            </div>
+            <button id="resetImageBtn" class="secondary" style="background: rgba(70,70,70,0.8); margin-top:5px;"><i class="fas fa-undo-alt"></i> Reset Image</button>
+          </div>
+          
+          <!-- Text Effects Panel -->
+          <div class="text-effects" id="textEffects">
+            <div class="section-title"><i class="fas fa-paint-brush"></i> Text Styling</div>
+            <div class="control-group">
+              <label for="fontSelect">Font</label>
+              <select id="fontSelect">
+                <optgroup label="Classic Meme Fonts">
+                  <option value="Impact" selected>Impact</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                </optgroup>
+                <optgroup label="Pro Creator Fonts">
+                  <option value="Bebas Neue">Bebas Neue</option>
+                  <option value="Anton">Anton</option>
+                  <option value="Permanent Marker">Permanent Marker</option>
+                  <option value="Oswald">Oswald</option>
+                  <option value="Lobster">Lobster</option>
+                  <option value="Pacifico">Pacifico</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="Standard Fonts">
+                  <option value="Arial">Arial</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="Courier New">Courier New</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="textColor">Text Color</label>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <input type="color" id="textColor" value="#ffffff" style="width:50px; padding:0;">
+                <div class="color-presets" id="textPresets"></div>
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="outlineWidth">Outline Size</label>
+              <input type="range" id="outlineWidth" min="0" max="15" value="2">
+            </div>
+            <div class="control-group">
+              <label for="outlineColor">Outline Color</label>
+              <input type="color" id="outlineColor" value="#000000">
+            </div>
+            <div class="control-group">
+              <label for="shadowBlur">Shadow Blur</label>
+              <input type="range" id="shadowBlur" min="0" max="20" value="5">
+            </div>
+            <div class="control-group">
+              <label for="shadowColor">Shadow Color</label>
+              <input type="color" id="shadowColor" value="#000000">
+            </div>
+          </div>
+          
+          <!-- Filters -->
+          <div>
+            <div class="section-title"><i class="fas fa-filter"></i> Image Filters</div>
+            <div class="filter-grid" id="filterGrid">
+              <div class="filter-item active" onclick="applyFilter('none')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23444'/></svg>" alt="Normal filter">
+                <div class="filter-label">Normal</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('grayscale(100%)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23555'/></svg>" alt="Grayscale filter">
+                <div class="filter-label">Grayscale</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('sepia(100%)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23753'/></svg>" alt="Sepia filter">
+                <div class="filter-label">Sepia</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('invert(100%)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23666'/></svg>" alt="Invert filter">
+                <div class="filter-label">Invert</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('blur(2px)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23333'/></svg>" alt="Blur filter">
+                <div class="filter-label">Blur</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('brightness(150%)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23444'/></svg>" alt="Brightness filter">
+                <div class="filter-label">Bright</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('contrast(200%)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23444'/></svg>" alt="Contrast filter">
+                <div class="filter-label">Contrast</div>
+              </div>
+              <div class="filter-item" onclick="applyFilter('hue-rotate(90deg)')">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='60'><rect width='100%' height='100%' fill='%23753'/></svg>" alt="Hue rotate filter">
+                <div class="filter-label">Hue</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Layer Panel -->
+          <div class="layer-panel" id="layerPanel">
+            <div class="section-title" style="border-bottom: none; margin-bottom: 5px;"><i class="fas fa-layer-group"></i> Active Layers</div>
+            <div id="layerList"><p style="opacity:0.6;">No layers yet.</p></div>
+          </div>
+          
+          <!-- Share Buttons -->
+          <div>
+            <div class="section-title"><i class="fas fa-share-alt"></i> Share</div>
+            <div class="share-buttons">
+              <a href="#" class="share-button" onclick="shareToFacebook()"><i class="fab fa-facebook"></i> FB</a>
+              <a href="#" class="share-button" onclick="shareToTwitter()"><i class="fab fa-twitter"></i> X</a>
+              <a href="#" class="share-button" onclick="copyLink()"><i class="fas fa-link"></i> Copy</a>
+            </div>
+          </div>
+          
+          <!-- Tips -->
+          <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+            <h4 style="color:var(--primary); margin-bottom:8px;"><i class="fas fa-lightbulb"></i> Quick Tips</h4>
+            <ul style="font-size:0.85rem; margin-left:15px;">
+              <li>Click text to select, then adjust styles</li>
+              <li>Drag bottom-right corner to resize text</li>
+              <li>Double‑click any text to edit</li>
+              <li>Use layers to reorder elements</li>
+              <li><strong>New!</strong> Zoom & pan the image with the Transform sliders</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATES PAGE -->
+    <div id="templates" class="page" style="display: none;">
+      <div class="page-content">
+        <h2><i class="fas fa-th-large"></i> Popular Meme Templates</h2>
+        <div class="template-grid">
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1bij.jpg')"><img src="https://i.imgflip.com/1bij.jpg" alt="One Does Not Simply meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1g8my.jpg')"><img src="https://i.imgflip.com/1g8my.jpg" alt="Drake Hotline Bling meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1bgw.jpg')"><img src="https://i.imgflip.com/1bgw.jpg" alt="Two Buttons meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1h7in3.jpg')"><img src="https://i.imgflip.com/1h7in3.jpg" alt="Change My Mind meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/345v97.jpg')"><img src="https://i.imgflip.com/345v97.jpg" alt="Cat template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1bhk.jpg')"><img src="https://i.imgflip.com/1bhk.jpg" alt="Success Kid meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/2cp1.jpg')"><img src="https://i.imgflip.com/2cp1.jpg" alt="Futurama Fry meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/1jwhww.jpg')"><img src="https://i.imgflip.com/1jwhww.jpg" alt="Expanding Brain meme template"></div>
+          <div class="template-item" onclick="loadTemplate('https://i.imgflip.com/43a45p.jpg')"><img src="https://i.imgflip.com/43a45p.jpg" alt="Epic Handshake meme template"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG PAGE -->
+    <div id="blog" class="page" style="display: none;">
+      <div class="page-content">
+        <h2><i class="fas fa-blog"></i> Meme Culture & Creator Blog</h2>
+        <p>Dive into the hilarious world of memes – from the classics to the latest trends. Learn how to create, share, and profit from your own viral content.</p>
+        
+        <!-- Post 1: Evolution of Meme Formats -->
+        <div class="blog-post" id="blog-evolution">
+          <h3>🧠 From "Bad Luck Brian" to "NPC Wojak": The Hilarious Evolution of Meme Formats</h3>
+          <span class="blog-date">March 15, 2026 • by MemesMaster Team</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect width='600' height='300' fill='%23333'/%3E%3Ctext x='20' y='150' fill='%23fff' font-size='24'%3EMeme Evolution Timeline%3C/text%3E%3C/svg%3E" alt="Meme evolution timeline from image macros to Wojaks">
+          <p>Remember when all you needed was a picture of a grumpy cat and some white Impact font to rule the internet? Those were simpler times. Today, meme culture has exploded into a complex ecosystem of formats, inside jokes, and ever-shifting templates. In this post, we’ll take a hilarious journey through the ages of memes – from the ancient relics of 2010 to the surrealist brainrot of 2026.</p>
+          <h4>The Stone Age: Image Macros</h4>
+          <p>It all started with simple image macros. You know the ones: a photo, top and bottom text in Impact font, and a punchline that made you exhale slightly through your nose. Classics like "Bad Luck Brian," "Success Kid," and "Philosophy Bro" ruled the land. They were straightforward, relatable, and required zero editing skills. Just slap on some text and boom – you had a meme.</p>
+          <p><strong>Funny illustration:</strong> Imagine cavemen carving stone tablets with "Me when no wi-fi" – that's basically what we were doing in 2010.</p>
+          <h4>The Renaissance: Advice Animals and Rage Comics</h4>
+          <p>Then came the golden age of advice animals and rage comics. Socially awkward penguin, good guy greg, and the entire family of rage faces (f7u12, anyone?) gave us a visual language to express every conceivable emotion. For the first time, we could tell multi-panel stories using crudely drawn MS Paint figures. Le me, forever alone, and trollface became household names.</p>
+          <p><strong>Illustration idea:</strong> A comic strip of "le me" trying to impress a crush and failing spectacularly – still relatable today.</p>
+          <h4>The Modern Era: Wojaks, Object Labeling, and Surrealism</h4>
+          <p>Fast forward to 2026, and memes have gotten… weird. And we love it. Enter Wojaks – those detailed, often melancholic cartoon faces that can represent any emotion from existential dread to smug satisfaction. Pair them with the "object labeling" format (where you point at random things and label them with relatable concepts) and you have a recipe for viral gold.</p>
+          <p>The current trend is surreal, layered humor. Memes within memes, references to references, and formats that require a PhD in internet lore to understand. But don't worry – with MemesMaster Pro, you can easily create your own layered masterpieces using our multi-layer text and sticker tools. Combine a Wojak face with a Drake template and watch the magic happen.</p>
+          <p><strong>Pro tip:</strong> To make your memes stand out, try mixing old and new formats. Put "Bad Luck Brian" in a Wojak outfit. Label everyday objects with existential thoughts. The weirder, the better.</p>
+          <p>So next time you're scrolling through your feed, appreciate the rich history behind those six-panel Wojak comics. And when you're ready to contribute to the ever-evolving memeverse, fire up MemesMaster Pro and let your creativity run wild.</p>
+        </div>
+
+        <!-- Post 2: How to Create Original Memes That Actually Get Shared -->
+        <div class="blog-post" id="blog-shareable">
+          <h3>🚀 How to Create Original Memes That Actually Get Shared (And Not Just Laughed At)</h3>
+          <span class="blog-date">March 10, 2026 • by Sarah J.</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect width='600' height='300' fill='%23333'/%3E%3Ctext x='20' y='150' fill='%23fff' font-size='24'%3EViral Meme Secrets%3C/text%3E%3C/svg%3E" alt="Viral meme secrets infographic">
+          <p>We've all been there: you see a meme, you laugh, you scroll on. But what makes a meme so good that you feel compelled to share it with every group chat, tweet it, and maybe even print it out and frame it? It's not just luck – there's a formula behind viral memes, and today we're going to break it down with a healthy dose of humor.</p>
+          <h4>The Three Pillars of Shareability</h4>
+          <p><strong>1. Relatability:</strong> The best memes hold up a mirror to our collective experiences. Whether it's the agony of Monday mornings, the joy of finding money in an old jacket, or the specific frustration of autocorrect changing "duck" to something else – if it's true, it's shareable. Use MemesMaster Pro to capture those micro-moments with precision. Our resizable text lets you emphasize the exact emotion.</p>
+          <p><strong>2. Simplicity:</strong> A cluttered meme is a dead meme. Stick to one clear joke, one strong image, and minimal text. Our one-click filters can help set the mood without overwhelming the viewer. For example, a grayscale filter can instantly add a "deep" feel to a mundane situation.</p>
+          <p><strong>3. Timeliness:</strong> Jump on trends while they're hot. Our template library is updated with the latest formats – from "Woman Yelling at Cat" to "GigaChad" and everything in between. But don't just copy; add your own twist. That's where originality shines.</p>
+          <h4>Anatomy of a Viral Meme (With Examples)</h4>
+          <p>Let's dissect a hypothetical viral hit: <em>"Me explaining to my mom that I need a new GPU for 'work'."</em> The image: a stock photo of a person sweating while gesturing at a computer. The text, layered with our outline and shadow effects, makes the words pop. The joke is universal (anyone who's ever gamed knows the struggle) and timely (GPU prices are always a topic).</p>
+          <p>Another example: <em>"How it feels to chew 5 Gum"</em> but with a twist – you add a sticker of a surprised Wojak and some psychedelic filters. Suddenly, a decade-old ad becomes fresh again.</p>
+          <h4>Using MemesMaster Pro Features to Boost Shareability</h4>
+          <ul>
+            <li><strong>Layers:</strong> Combine multiple elements – a background image, a sticker, and text – to create complex, layered humor. Think of it as a meme sandwich.</li>
+            <li><strong>Filters:</strong> Apply "deep fried" filters for ironic effect, or "vintage" for nostalgic memes. Our filter grid gives you one-click access to eight different looks.</li>
+            <li><strong>Fonts:</strong> Choose from 30+ fonts, including classics like Impact and modern favorites like Bebas Neue. The right font can make or break a punchline.</li>
+            <li><strong>Resize Text:</strong> Emphasize key words by making them larger. Drag the bottom-right handle of any text box to scale it up – perfect for comic-style shouting.</li>
+          </ul>
+          <p>Remember, the goal isn't just to make people laugh – it's to make them feel seen. When someone shares your meme, they're saying, "This is me, and I want you to see it too." So go ahead, open MemesMaster Pro, and start creating content that resonates. Your future viral hit is just a few clicks away.</p>
+        </div>
+
+        <!-- Post 3: The Science of Funny -->
+        <div class="blog-post" id="blog-science">
+          <h3>🧪 The Science of Funny: Why Our Brains Love Memes (And Can't Stop Sharing)</h3>
+          <span class="blog-date">March 5, 2026 • by Dr. Mike R.</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Crect width='600' height='300' fill='%23333'/%3E%3Ctext x='20' y='150' fill='%23fff' font-size='24'%3EBrain Science and Memes%3C/text%3E%3C/svg%3E" alt="Brain science and memes illustration">
+          <p>Ever wondered why you can spend hours scrolling through memes and still want more? It's not just boredom – it's your brain's reward system working overtime. In this post, we'll explore the fascinating psychology and neuroscience behind meme addiction, and how you can use that knowledge to craft even more irresistible content.</p>
+          <h4>Dopamine and the "Aha!" Moment</h4>
+          <p>When you see a meme that perfectly captures a thought you've had, your brain releases a small dose of dopamine – the same chemical involved in pleasure and reward. That "aha!" moment of recognition is literally intoxicating. Memes are like little dopamine hits delivered in digestible packages. And because they're short, you can consume many in a row, creating a feedback loop that keeps you scrolling.</p>
+          <p><strong>Funny illustration:</strong> Imagine your brain as a slot machine, and each relatable meme is a cherry – ding ding ding!</p>
+          <h4>Social Bonding Through Shared Humor</h4>
+          <p>Humor has always been a social glue. Sharing a laugh with someone builds trust and strengthens relationships. Memes take this to the next level by creating in-groups. When you send a niche meme to a friend and they get it, you're reinforcing your shared identity. That's why memes about specific hobbies, professions, or life stages spread like wildfire within communities.</p>
+          <p>Using MemesMaster Pro, you can tailor your memes to your exact audience. Are you making content for developers? Use our "Distracted Boyfriend" template with labels like "VS Code" vs "Vim". For teachers? Try the "Expanding Brain" with "student actually does the reading." The more specific, the stronger the bond.</p>
+          <h4>The Role of Surprise and Incongruity</h4>
+          <p>Many memes work by violating expectations. A setup that leads you down one path, then a punchline that veers into absurdity. This cognitive dissonance creates a burst of surprise that, when resolved, feels funny. The "expectation violation" theory explains why surreal memes (like those involving floating heads and random objects) can be so hilarious – they break all the rules.</p>
+          <p>To harness this in your own memes, try combining unrelated elements. Use our sticker library to add a random dancing cat to a serious political cartoon. Or apply the "hue rotate" filter to make everything look trippy. The key is to be unexpected.</p>
+          <h4>Why We Remix and Reshare</h4>
+          <p>Memes are the ultimate participatory culture. They invite remixing. When you see a format, your brain automatically starts thinking, "How can I apply this to my life?" That urge to create is what drives meme evolution. MemesMaster Pro makes it effortless to join the conversation – just upload a template, add your twist, and share.</p>
+          <p>So next time you're deep in a meme rabbit hole, remember: it's not just you – it's biology. And if you're going to feed your dopamine addiction, you might as well create some memes of your own. Open MemesMaster Pro and let your brain do the rest.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page" style="display: none;">
+      <div class="page-content"><h2>About Us</h2><p>MemesMaster Pro is the ultimate free meme generator. No watermarks, no uploads – everything stays in your browser. We believe memes should be free, fast, and fun. Start creating now!</p></div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page" style="display: none;">
+      <div class="page-content"><h2>Contact</h2><p>Email: <a href="mailto:support@memesmaster.com" style="color:var(--primary);">support@memesmaster.com</a></p><p>Follow us on social media for daily memes and updates.</p></div>
+    </div>
+
+    <!-- PRIVACY PAGE -->
+    <div id="privacy" class="page" style="display: none;">
+      <div class="page-content"><h2>Privacy Policy</h2><p>We don't store any of your images. All processing happens locally in your browser. No personal data is collected or shared.</p></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('home')">Workspace</a>
+        <a href="#" onclick="showPage('templates')">Templates</a>
+        <a href="#" onclick="showPage('blog')">Blog</a>
+        <a href="#" onclick="showPage('about')">About</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+        <a href="#" onclick="showPage('privacy')">Privacy</a>
+      </div>
+      <div class="social-icons">
+        <a href="#" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" rel="noopener"><i class="fab fa-reddit"></i></a>
+      </div>
+      <div class="copyright">© 2026 MemesMaster Pro – All rights reserved</div>
+    </footer>
+  </div>
+
+  <!-- Modal for text editing -->
+  <div class="modal-overlay" id="textEditModal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Edit Text</h3>
+      <textarea id="textEditInput" placeholder="Enter your meme text..."></textarea>
+      <div class="modal-actions">
+        <button class="secondary" onclick="closeTextModal()">Cancel</button>
+        <button onclick="saveTextModal()" style="background:var(--success); color:#111;">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emoji Picker -->
+  <div id="emojiPicker">
+    <h3 style="margin-bottom:10px; color:var(--secondary);">Emojis</h3>
+    <div class="emoji-grid">
+      <span onclick="addEmoji('😀')">😀</span><span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('😭')">😭</span>
+      <span onclick="addEmoji('💀')">💀</span><span onclick="addEmoji('🔥')">🔥</span><span onclick="addEmoji('💯')">💯</span>
+      <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('🤡')">🤡</span><span onclick="addEmoji('🗿')">🗿</span>
+      <span onclick="addEmoji('🤓')">🤓</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('✨')">✨</span>
+    </div>
+    <button onclick="toggleEmojiPicker()" style="width:100%; margin-top:15px;">Close</button>
+  </div>
+
+  <div class="notification" id="notification">Action successful!</div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // DOM elements
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const upload = document.getElementById('upload');
+      const fontSelect = document.getElementById('fontSelect');
+      const textColor = document.getElementById('textColor');
+      const outlineWidth = document.getElementById('outlineWidth');
+      const outlineColor = document.getElementById('outlineColor');
+      const shadowBlur = document.getElementById('shadowBlur');
+      const shadowColor = document.getElementById('shadowColor');
+      const notification = document.getElementById('notification');
+      const textEditModal = document.getElementById('textEditModal');
+      const textEditInput = document.getElementById('textEditInput');
+      const layerList = document.getElementById('layerList');
+      const emojiPicker = document.getElementById('emojiPicker');
+      const toggleEffectsBtn = document.getElementById('toggleEffectsBtn');
+      const toggleLayersBtn = document.getElementById('toggleLayersBtn');
+      const textEffectsPanel = document.getElementById('textEffects');
+      
+      // Image transform elements
+      const imageScaleSlider = document.getElementById('imageScale');
+      const imageOffsetXSlider = document.getElementById('imageOffsetX');
+      const imageOffsetYSlider = document.getElementById('imageOffsetY');
+      const scaleValueSpan = document.getElementById('scaleValue');
+      const offsetXValueSpan = document.getElementById('offsetXValue');
+      const offsetYValueSpan = document.getElementById('offsetYValue');
+      const resetImageBtn = document.getElementById('resetImageBtn');
+
+      // Global state
+      let img = new Image();
+      img.crossOrigin = "anonymous";
+      let textItems = [];
+      let selectedItem = null;
+      let imageProps = { 
+        x: 0, y: 0, width: canvas.width, height: canvas.height, 
+        filter: 'none',
+        scale: 1.0,
+        offsetX: 0,
+        offsetY: 0
+      };
+      let dragging = false;
+      let resizingText = false;
+      let offsetX = 0, offsetY = 0;
+      let itemToEdit = null;
+
+      // History
+      let history = [];
+      let historyIndex = -1;
+
+      let imageReady = false;
+      const PLACEHOLDER_SRC = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400"><rect width="100%" height="100%" fill="%231a1a1a"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="20px" fill="%23777">Upload an image or select a template!</text></svg>';
+
+      function showNotification(msg, isError = false) {
+        notification.textContent = msg;
+        notification.className = 'notification show' + (isError ? ' error' : '');
+        setTimeout(() => notification.classList.remove('show'), 3000);
+      }
+
+      function updateTransformDisplay() {
+        scaleValueSpan.innerText = imageProps.scale.toFixed(2);
+        offsetXValueSpan.innerText = Math.round(imageProps.offsetX);
+        offsetYValueSpan.innerText = Math.round(imageProps.offsetY);
+        imageScaleSlider.value = imageProps.scale;
+        imageOffsetXSlider.value = imageProps.offsetX;
+        imageOffsetYSlider.value = imageProps.offsetY;
+      }
+
+      function recalcImagePosition() {
+        if (!img.complete || img.naturalWidth === 0) return;
+        const scale = imageProps.scale;
+        const scaledWidth = img.width * scale;
+        const scaledHeight = img.height * scale;
+        const offsetX = imageProps.offsetX;
+        const offsetY = imageProps.offsetY;
+        // Draw the image centered + offset, but clipped to canvas
+        imageProps.x = (canvas.width - scaledWidth) / 2 + offsetX;
+        imageProps.y = (canvas.height - scaledHeight) / 2 + offsetY;
+        imageProps.width = scaledWidth;
+        imageProps.height = scaledHeight;
+      }
+
+      function saveState() {
+        history = history.slice(0, historyIndex + 1);
+        history.push({
+          textItems: JSON.parse(JSON.stringify(textItems)),
+          imageProps: JSON.parse(JSON.stringify(imageProps))
+        });
+        if (history.length > 25) history.shift();
+        else historyIndex = history.length - 1;
+        updateLayerPanel();
+      }
+
+      function restoreState(state) {
+        textItems = JSON.parse(JSON.stringify(state.textItems));
+        imageProps = JSON.parse(JSON.stringify(state.imageProps));
+        selectedItem = null;
+        updateTransformDisplay();
+        recalcImagePosition();
+        updateLayerPanel();
+        draw();
+      }
+
+      window.undoAction = function() {
+        if (historyIndex > 0) {
+          historyIndex--;
+          restoreState(history[historyIndex]);
+          showNotification("Undo");
+        }
+      };
+      window.redoAction = function() {
+        if (historyIndex < history.length - 1) {
+          historyIndex++;
+          restoreState(history[historyIndex]);
+          showNotification("Redo");
+        }
+      };
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (img.complete && img.naturalWidth !== 0) {
+          ctx.save();
+          ctx.filter = imageProps.filter;
+          ctx.drawImage(img, imageProps.x, imageProps.y, imageProps.width, imageProps.height);
+          ctx.restore();
+        }
+
+        textItems.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.font = `${item.fontSize}px "${item.fontFamily}"`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          if (item.type === 'emoji') {
+            ctx.fillStyle = item.color || '#ffffff';
+            ctx.fillText(item.emoji, 0, 0);
+            const metrics = ctx.measureText(item.emoji);
+            item.width = metrics.width;
+            item.height = item.fontSize;
+          } else {
+            const lines = item.text.split('\n');
+            const lineHeight = item.fontSize * 1.2;
+            let startY = -(lines.length * lineHeight) / 2 + lineHeight / 2;
+
+            lines.forEach(line => {
+              if (item.shadowBlur > 0) {
+                ctx.shadowColor = item.shadowColor || '#000';
+                ctx.shadowBlur = item.shadowBlur;
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+              }
+              if (item.outlineWidth > 0) {
+                ctx.lineWidth = item.outlineWidth;
+                ctx.strokeStyle = item.outlineColor || '#000';
+                ctx.strokeText(line, 0, startY);
+              }
+              ctx.shadowBlur = 0;
+              ctx.fillStyle = item.color || '#fff';
+              ctx.fillText(line, 0, startY);
+              startY += lineHeight;
+            });
+
+            let maxW = 0;
+            lines.forEach(line => {
+              const w = ctx.measureText(line).width;
+              if (w > maxW) maxW = w;
+            });
+            item.width = maxW;
+            item.height = lines.length * lineHeight;
+          }
+
+          if (item === selectedItem) {
+            ctx.strokeStyle = 'rgba(255,107,107,0.8)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.strokeRect(-item.width/2 - 10, -item.height/2 - 10, item.width + 20, item.height + 20);
+            ctx.setLineDash([]);
+            ctx.fillStyle = 'var(--primary)';
+            ctx.fillRect(item.width/2 + 2, item.height/2 + 2, 16, 16);
+          }
+          ctx.restore();
+        });
+      }
+
+      img.onload = function() {
+        imageReady = (img.src !== PLACEHOLDER_SRC);
+        recalcImagePosition();
+        saveState();
+        draw();
+      };
+      img.src = PLACEHOLDER_SRC;
+
+      upload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.type.match('image.*')) {
+          showNotification("Please select an image file", true);
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          img.src = ev.target.result;
+          // Reset transform when new image loads
+          imageProps.scale = 1.0;
+          imageProps.offsetX = 0;
+          imageProps.offsetY = 0;
+          updateTransformDisplay();
+          showNotification("Image loaded!");
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Image transform listeners
+      imageScaleSlider.addEventListener('input', function() {
+        imageProps.scale = parseFloat(this.value);
+        updateTransformDisplay();
+        recalcImagePosition();
+        draw();
+      });
+      imageOffsetXSlider.addEventListener('input', function() {
+        imageProps.offsetX = parseFloat(this.value);
+        updateTransformDisplay();
+        recalcImagePosition();
+        draw();
+      });
+      imageOffsetYSlider.addEventListener('input', function() {
+        imageProps.offsetY = parseFloat(this.value);
+        updateTransformDisplay();
+        recalcImagePosition();
+        draw();
+      });
+      [imageScaleSlider, imageOffsetXSlider, imageOffsetYSlider].forEach(slider => {
+        slider.addEventListener('change', () => saveState());
+      });
+      resetImageBtn.addEventListener('click', function() {
+        imageProps.scale = 1.0;
+        imageProps.offsetX = 0;
+        imageProps.offsetY = 0;
+        updateTransformDisplay();
+        recalcImagePosition();
+        saveState();
+        draw();
+        showNotification("Image transform reset");
+      });
+
+      window.showPage = function(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.getElementById(pageId).style.display = 'block';
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        const activeLink = Array.from(document.querySelectorAll('nav a')).find(a => a.getAttribute('onclick').includes(pageId));
+        if (activeLink) activeLink.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (pageId === 'blog' && window.location.hash) {
+          const el = document.querySelector(window.location.hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
+      window.addTextWithEffects = function() {
+        textItems.push({
+          type: 'text',
+          text: 'EDIT ME',
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          fontSize: 40,
+          fontFamily: fontSelect.value,
+          color: textColor.value,
+          outlineWidth: parseInt(outlineWidth.value),
+          outlineColor: outlineColor.value,
+          shadowBlur: parseInt(shadowBlur.value),
+          shadowColor: shadowColor.value,
+        });
+        selectedItem = textItems[textItems.length - 1];
+        saveState();
+        draw();
+        showNotification("Text added! Double‑click to edit.");
+      };
+
+      window.addEmoji = function(char) {
+        textItems.push({
+          type: 'emoji',
+          emoji: char,
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          fontSize: 60,
+          fontFamily: 'Arial',
+          color: textColor.value,
+        });
+        selectedItem = textItems[textItems.length - 1];
+        emojiPicker.style.display = 'none';
+        saveState();
+        draw();
+      };
+
+      window.toggleEmojiPicker = function() {
+        emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
+      };
+
+      window.openTextModal = function(item) {
+        itemToEdit = item;
+        textEditInput.value = item.type === 'emoji' ? item.emoji : item.text;
+        document.getElementById('modalTitle').innerText = item.type === 'emoji' ? 'Edit Emoji' : 'Edit Text';
+        textEditModal.classList.add('active');
+        textEditInput.focus();
+      };
+      window.closeTextModal = function() {
+        textEditModal.classList.remove('active');
+        itemToEdit = null;
+      };
+      window.saveTextModal = function() {
+        if (!itemToEdit) return;
+        const val = textEditInput.value.trim();
+        if (!val) {
+          textItems = textItems.filter(i => i !== itemToEdit);
+        } else {
+          if (itemToEdit.type === 'emoji') itemToEdit.emoji = val;
+          else itemToEdit.text = val;
+        }
+        saveState();
+        draw();
+        closeTextModal();
+      };
+
+      function getCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        if (e.touches && e.touches.length > 0) {
+          return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
+        }
+        return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+      }
+
+      function handleStart(e) {
+        e.preventDefault();
+        const { x, y } = getCoords(e);
+        let found = false;
+
+        for (let i = textItems.length - 1; i >= 0; i--) {
+          const item = textItems[i];
+          if (item === selectedItem) {
+            const handleX = item.x + item.width/2 + 10;
+            const handleY = item.y + item.height/2 + 10;
+            if (Math.abs(x - handleX) < 20 && Math.abs(y - handleY) < 20) {
+              resizingText = true;
+              found = true;
+              break;
+            }
+          }
+          const left = item.x - item.width/2 - 10;
+          const right = item.x + item.width/2 + 10;
+          const top = item.y - item.height/2 - 10;
+          const bottom = item.y + item.height/2 + 10;
+          if (x >= left && x <= right && y >= top && y <= bottom) {
+            selectedItem = item;
+            if (item.type !== 'emoji') {
+              fontSelect.value = item.fontFamily || 'Impact';
+              textColor.value = item.color || '#ffffff';
+              outlineWidth.value = item.outlineWidth || 2;
+              outlineColor.value = item.outlineColor || '#000000';
+              shadowBlur.value = item.shadowBlur || 5;
+              shadowColor.value = item.shadowColor || '#000000';
+            }
+            dragging = true;
+            offsetX = x - item.x;
+            offsetY = y - item.y;
+            found = true;
+            break;
+          }
+        }
+        if (!found) selectedItem = null;
+        draw();
+      }
+
+      function handleMove(e) {
+        if (!selectedItem) return;
+        e.preventDefault();
+        const { x, y } = getCoords(e);
+
+        if (resizingText && selectedItem.type !== 'emoji') {
+          const dx = x - selectedItem.x;
+          const dy = y - selectedItem.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          selectedItem.fontSize = Math.max(15, Math.min(120, Math.floor(dist / 1.2)));
+          draw();
+        } else if (dragging) {
+          selectedItem.x = x - offsetX;
+          selectedItem.y = y - offsetY;
+          draw();
+        }
+      }
+
+      function handleEnd(e) {
+        if (dragging || resizingText) saveState();
+        dragging = false;
+        resizingText = false;
+      }
+
+      canvas.addEventListener('mousedown', handleStart);
+      canvas.addEventListener('mousemove', handleMove);
+      window.addEventListener('mouseup', handleEnd);
+      canvas.addEventListener('touchstart', handleStart, { passive: false });
+      canvas.addEventListener('touchmove', handleMove, { passive: false });
+      canvas.addEventListener('touchend', handleEnd);
+      canvas.addEventListener('touchcancel', handleEnd);
+
+      canvas.addEventListener('dblclick', (e) => {
+        const { x, y } = getCoords(e);
+        for (let item of textItems) {
+          const left = item.x - item.width/2 - 10;
+          const right = item.x + item.width/2 + 10;
+          const top = item.y - item.height/2 - 10;
+          const bottom = item.y + item.height/2 + 10;
+          if (x >= left && x <= right && y >= top && y <= bottom) {
+            openTextModal(item);
+            break;
+          }
+        }
+      });
+
+      let lastTap = 0;
+      canvas.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        if (now - lastTap < 300 && selectedItem) {
+          e.preventDefault();
+          openTextModal(selectedItem);
+        }
+        lastTap = now;
+      });
+
+      window.moveLayerUp = function(index) {
+        if (index >= textItems.length - 1) return;
+        const item = textItems.splice(index, 1)[0];
+        textItems.splice(index + 1, 0, item);
+        selectedItem = item;
+        saveState();
+        draw();
+      };
+      window.moveLayerDown = function(index) {
+        if (index <= 0) return;
+        const item = textItems.splice(index, 1)[0];
+        textItems.splice(index - 1, 0, item);
+        selectedItem = item;
+        saveState();
+        draw();
+      };
+      window.deleteLayer = function(index) {
+        textItems.splice(index, 1);
+        if (selectedItem === textItems[index]) selectedItem = null;
+        saveState();
+        draw();
+      };
+
+      function updateLayerPanel() {
+        if (!layerList) return;
+        if (textItems.length === 0) {
+          layerList.innerHTML = '<p style="opacity:0.6; font-size:0.9rem;">No layers yet.</p>';
+          return;
+        }
+        let html = '';
+        for (let i = textItems.length - 1; i >= 0; i--) {
+          const item = textItems[i];
+          const label = item.type === 'emoji' ? item.emoji : `"${item.text.substring(0,12)}${item.text.length>12?'...':''}"`;
+          const selectedClass = (item === selectedItem) ? 'selected' : '';
+          html += `
+            <div class="layer-item ${selectedClass}" onclick="if(!event.target.closest('.layer-controls')){ let idx=${i}; selectedItem=textItems[idx]; draw(); }">
+              <span style="font-weight:600; font-size:0.9rem;">${label}</span>
+              <div class="layer-controls">
+                <button onclick="moveLayerUp(${i}); event.stopPropagation();" title="Bring Forward"><i class="fas fa-arrow-up"></i></button>
+                <button onclick="moveLayerDown(${i}); event.stopPropagation();" title="Send Backward"><i class="fas fa-arrow-down"></i></button>
+                <button onclick="deleteLayer(${i}); event.stopPropagation();" title="Delete" style="color:var(--error);"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          `;
+        }
+        layerList.innerHTML = html;
+      }
+
+      toggleLayersBtn.addEventListener('click', () => {
+        const panel = document.getElementById('layerPanel');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      });
+      toggleEffectsBtn.addEventListener('click', () => {
+        textEffectsPanel.style.display = textEffectsPanel.style.display === 'none' ? 'grid' : 'none';
+      });
+
+      fontSelect.addEventListener('input', () => {
+        if (selectedItem && selectedItem.type !== 'emoji') {
+          selectedItem.fontFamily = fontSelect.value;
+          draw();
+        }
+      });
+      textColor.addEventListener('input', () => {
+        if (selectedItem) {
+          selectedItem.color = textColor.value;
+          draw();
+        }
+      });
+      outlineWidth.addEventListener('input', () => {
+        if (selectedItem && selectedItem.type !== 'emoji') {
+          selectedItem.outlineWidth = parseInt(outlineWidth.value);
+          draw();
+        }
+      });
+      outlineColor.addEventListener('input', () => {
+        if (selectedItem && selectedItem.type !== 'emoji') {
+          selectedItem.outlineColor = outlineColor.value;
+          draw();
+        }
+      });
+      shadowBlur.addEventListener('input', () => {
+        if (selectedItem && selectedItem.type !== 'emoji') {
+          selectedItem.shadowBlur = parseInt(shadowBlur.value);
+          draw();
+        }
+      });
+      shadowColor.addEventListener('input', () => {
+        if (selectedItem && selectedItem.type !== 'emoji') {
+          selectedItem.shadowColor = shadowColor.value;
+          draw();
+        }
+      });
+
+      [fontSelect, textColor, outlineWidth, outlineColor, shadowBlur, shadowColor].forEach(el => {
+        el.addEventListener('change', () => saveState());
+      });
+
+      window.mirrorImage = function() {
+        if (!imageReady) {
+          showNotification("Load an image first", true);
+          return;
+        }
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = img.width;
+        tempCanvas.height = img.height;
+        const tCtx = tempCanvas.getContext('2d');
+        tCtx.translate(img.width, 0);
+        tCtx.scale(-1, 1);
+        try {
+          tCtx.drawImage(img, 0, 0);
+          img.src = tempCanvas.toDataURL();
+          showNotification("Image flipped");
+        } catch (e) {
+          showNotification("Cannot flip cross-origin image. Use a local upload.", true);
+        }
+      };
+
+      window.applyFilter = function(filterString) {
+        imageProps.filter = filterString;
+        document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+        if (event && event.currentTarget) event.currentTarget.classList.add('active');
+        saveState();
+        draw();
+      };
+
+      window.loadTemplate = function(url) {
+        showPage('home');
+        fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url))
+          .then(response => response.blob())
+          .then(blob => {
+            const reader = new FileReader();
+            reader.onload = (e) => { 
+              img.src = e.target.result;
+              // Reset transform for template
+              imageProps.scale = 1.0;
+              imageProps.offsetX = 0;
+              imageProps.offsetY = 0;
+              updateTransformDisplay();
+              textItems = [];
+            };
+            reader.readAsDataURL(blob);
+            showNotification("Template loaded!");
+          })
+          .catch(() => {
+            img.crossOrigin = "anonymous";
+            img.src = url + '?not-from-cache-please';
+          });
+      };
+
+      window.downloadMeme = function() {
+        if (!imageReady) {
+          showNotification("Please upload an image first", true);
+          return;
+        }
+        const scale = 2;
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width * scale;
+        tempCanvas.height = canvas.height * scale;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.scale(scale, scale);
+        tempCtx.drawImage(canvas, 0, 0);
+        const link = document.createElement('a');
+        link.download = `MemesMaster_${Date.now()}.png`;
+        link.href = tempCanvas.toDataURL('image/png');
+        link.click();
+        showNotification("High-Res Meme Downloaded!");
+      };
+
+      window.shareToFacebook = function() {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href));
+      };
+      window.shareToTwitter = function() {
+        window.open('https://twitter.com/intent/tweet?text=Check out MemesMaster Pro!&url=' + encodeURIComponent(window.location.href));
+      };
+      window.copyLink = function() {
+        navigator.clipboard.writeText(window.location.href).then(() => showNotification("Link copied!"));
+      };
+
+      // Color presets
+      const presetColors = ['#ffffff','#000000','#ff0000','#ffff00','#00ff00','#00ffff'];
+      const presetDiv = document.getElementById('textPresets');
+      presetColors.forEach(c => {
+        const d = document.createElement('div');
+        d.className = 'color-preset';
+        d.style.backgroundColor = c;
+        d.onclick = () => {
+          textColor.value = c;
+          textColor.dispatchEvent(new Event('input'));
+        };
+        presetDiv.appendChild(d);
+      });
+
+      if (window.location.hash && window.location.hash.startsWith('#blog-')) {
+        showPage('blog');
+        setTimeout(() => {
+          const el = document.querySelector(window.location.hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+
+      saveState();
+      updateTransformDisplay();
+    })();
+  </script>
+</body>
+</html>
