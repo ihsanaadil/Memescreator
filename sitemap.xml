@@ -3,25 +3,31 @@
   <url>
     <loc>https://memesmasterpro.netlify.app/</loc>
     <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://memesmasterpro.netlify.app/#blog-evolution</loc>
-    <lastmod>2026-03-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://memesmasterpro.netlify.app/templates</loc>
+    <lastmod>2026-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://memesmasterpro.netlify.app/#blog-shareable</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://memesmasterpro.netlify.app/blog</loc>
+    <lastmod>2026-04-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://memesmasterpro.netlify.app/#blog-science</loc>
-    <lastmod>2026-03-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://memesmasterpro.netlify.app/about</loc>
+    <lastmod>2026-04-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://memesmasterpro.netlify.app/contact</loc>
+    <lastmod>2026-04-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://memesmasterpro.netlify.app/privacy</loc>
+    <lastmod>2026-04-06</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
