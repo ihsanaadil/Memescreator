@@ -1,0 +1,3 @@
+/index.html    /    301
+
+http://memesmasterpro.netlify.app/*    https://memesmasterpro.netlify.app/:splat    301!
